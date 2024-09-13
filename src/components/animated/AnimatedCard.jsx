@@ -26,7 +26,7 @@ function splitIntoLines(text) {
 }
 
 const AnimatedCard = ({ title, desc, index }) => {
-  const { scene, nodes } = useClonedGLTF("3d models/untitled.glb");
+  const { scene, nodes } = useClonedGLTF("3d models/card.glb");
 
   const cardRef = useRef(null);
 
