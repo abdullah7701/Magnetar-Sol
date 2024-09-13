@@ -27,7 +27,7 @@ const AnimatedCardSlideshow = () => {
       <Canvas
         style={{
           height: "100vh",
-          width: "100vw",
+          width: "100%",
         }}
         camera={{ position: [0, 0, 5], fov: 50 }}
       >

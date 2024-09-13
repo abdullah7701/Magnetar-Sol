@@ -1,14 +1,13 @@
-import Sticky from "react-stickynode";
-
 const StickyWrapper = ({ height, id, children }) => {
+  const stickyStyle = {
+    position: "sticky",
+    top: 0,
+  };
+
   return (
     <div>
-      <div id={`sticky_start_${id}`}></div>
-      <Sticky top={`#sticky_start_${id}`} bottomBoundary={`#sticky_end_${id}`}>
-        {children}
-      </Sticky>
+      <div style={stickyStyle}>{children}</div>
       <div style={{ height: `${height}px`, width: "100%" }}></div>
-      <div id={`sticky_end_${id}`}></div>
     </div>
   );
 };

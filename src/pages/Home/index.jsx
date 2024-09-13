@@ -13,6 +13,7 @@ import FloatingPhone from "components/animated/FloatingPhone";
 import Book from "resources/icons/book.svg";
 import StickyWrapper from "components/StickyWrapper";
 import AnimatedCardSlideshow from "components/animated/AnimatedCardSlideshow";
+import ServiceSection from "components/ServiceSection";
 
 const Introduction = () => {
   const FancyText = ({ className, icon, delay = 0.15, children }) => {
@@ -286,7 +287,7 @@ const Upgrades = () => {
 
 const Cards = () => {
   return (
-    <StickyWrapper id="cards" height={3000}>
+    <StickyWrapper id="cards" height={2800}>
       <div
         className="w-full h-[100vh] bg-red-100 bg-cover"
         style={{ backgroundImage: `url(background.jpg)` }}
