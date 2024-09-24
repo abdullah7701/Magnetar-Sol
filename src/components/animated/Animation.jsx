@@ -6,10 +6,14 @@ const Animation = ({
   className = "",
   animation = ANIMATIONS.fadeInUp,
   delay = 0.15,
+  bottomMargin = -50,
   children,
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
+  const isInView = useInView(ref, {
+    once: true,
+    margin: `0px 0px ${bottomMargin}px 0px`,
+  });
 
   return (
     <motion.div

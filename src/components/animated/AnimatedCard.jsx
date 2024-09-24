@@ -26,7 +26,7 @@ function splitIntoLines(text) {
 }
 
 const AnimatedCard = ({ title, desc, index }) => {
-  const { scene, nodes } = useClonedGLTF("3d models/card.glb");
+  const { scene, nodes } = useClonedGLTF("3d models/card2.glb");
 
   const cardRef = useRef(null);
 
@@ -75,6 +75,8 @@ const AnimatedCard = ({ title, desc, index }) => {
     const newTexture = new THREE.CanvasTexture(canvas);
     newTexture.needsUpdate = true;
 
+    console.log(nodes);
+    debugger;
     if (nodes.Plane003) {
       nodes.Plane003.material = new THREE.MeshBasicMaterial({
         map: newTexture,
@@ -86,15 +88,12 @@ const AnimatedCard = ({ title, desc, index }) => {
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
 
-    // Calculate the target position and rotation
     const { x, y, rotationX, rotationY, rotationZ } =
       calculateCardPosition(index);
 
     if (cardRef.current) {
-      // Apply bounce
       const bounce = Math.sin(time * bounceSpeed) * bounceHeight;
 
-      // Smoothly interpolate position
       cardRef.current.position.x = THREE.MathUtils.lerp(
         prevPosition.current.x,
         x,
@@ -105,9 +104,8 @@ const AnimatedCard = ({ title, desc, index }) => {
         y + bounce,
         0.04
       );
-      cardRef.current.position.z = 0; // Assuming no change in z-axis
+      cardRef.current.position.z = 0;
 
-      // Smoothly interpolate rotation
       cardRef.current.rotation.x = THREE.MathUtils.lerp(
         prevRotation.current.x,
         rotationX,
@@ -124,12 +122,12 @@ const AnimatedCard = ({ title, desc, index }) => {
         0.04
       );
 
-      // Update previous values
       prevPosition.current.set(
         cardRef.current.position.x,
         cardRef.current.position.y,
         cardRef.current.position.z
       );
+
       prevRotation.current.set(
         cardRef.current.rotation.x,
         cardRef.current.rotation.y,
