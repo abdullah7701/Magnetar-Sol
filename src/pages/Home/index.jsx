@@ -99,15 +99,27 @@ const Introduction = () => {
           </Animation>
         </div>
       </div>
-      <div className="relative w-1/2 h-[800px] bg-secondary">
-        <div className="absolute z-0 w-full h-full pointer-events-none opacity-80">
+      <div className="relative w-1/2 h-[800px]">
+        <div className="absolute z-0 w-full h-full pointer-events-none opacity-90">
           <Lottie
             className="w-full h-full"
             animationData={Bubbles}
             lottieRef={animationRef}
           />
         </div>
-        <div className="relative z-10 w-full h-full flex justify-center items-center pointer-events-none">
+        <div className="absolute -z-10 w-full h-full pointer-events-none bg-secondary">
+          <svg className="w-full h-full" viewBox="0 0 500 500">
+            <path
+              d="M 370 0 l 0 120 q 0 130 -140 70 t -140 40 t 100 70 t 160 -20 t 20 80 t 0 120"
+              stroke="#0F77BE"
+              fill="none"
+              strokeWidth={3}
+              strokeOpacity={0.5}
+              className="animated-path"
+            ></path>
+          </svg>
+        </div>
+        <div className="relative z-20 w-full h-full flex justify-center items-center pointer-events-none">
           <div className="absolute w-4/5 h-[300px] mb-40 flex flex-col justify-between">
             <FancyText className="self-end ">
               Tech Solutions, Simplified.

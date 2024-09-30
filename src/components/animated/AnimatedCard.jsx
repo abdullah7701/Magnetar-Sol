@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { calculateCardPosition } from "utils";
@@ -26,7 +26,7 @@ function splitIntoLines(text) {
 }
 
 const AnimatedCard = ({ title, desc, index }) => {
-  const { scene, nodes } = useClonedGLTF("3d models/card2.glb");
+  const { scene, nodes } = useClonedGLTF("3d models/card.glb");
 
   const cardRef = useRef(null);
 
@@ -75,8 +75,6 @@ const AnimatedCard = ({ title, desc, index }) => {
     const newTexture = new THREE.CanvasTexture(canvas);
     newTexture.needsUpdate = true;
 
-    console.log(nodes);
-    debugger;
     if (nodes.Plane003) {
       nodes.Plane003.material = new THREE.MeshBasicMaterial({
         map: newTexture,
@@ -138,7 +136,6 @@ const AnimatedCard = ({ title, desc, index }) => {
 
   return (
     <group
-      onClick={() => console.log("Card clicked: ", index)}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
