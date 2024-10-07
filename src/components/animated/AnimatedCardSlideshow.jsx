@@ -1,6 +1,7 @@
-import { Canvas } from "@react-three/fiber";
 import AnimatedCard from "./AnimatedCard";
-import { useState } from "react";
+import React, { useMemo } from "react";
+import { Canvas, useLoader } from "@react-three/fiber";
+import * as THREE from "three";
 
 const cards = [
   {
@@ -21,6 +22,25 @@ const cards = [
   },
 ];
 
+const Background = () => {
+  const bgTexture = useLoader(THREE.TextureLoader, "background.jpg");
+
+  // Create a plane for the background
+  const bgGeometry = useMemo(() => new THREE.PlaneGeometry(13, 7), []);
+  const bgMaterial = useMemo(
+    () =>
+      new THREE.MeshBasicMaterial({
+        map: bgTexture,
+        toneMapped: false,
+      }),
+    [bgTexture]
+  );
+
+  return (
+    <mesh geometry={bgGeometry} material={bgMaterial} position={[0, 0, -1]} />
+  );
+};
+
 const AnimatedCardSlideshow = () => {
   return (
     <div className="absolute -Z-50 top-0 w-full h-full pointer-events-none select-none">
@@ -31,8 +51,8 @@ const AnimatedCardSlideshow = () => {
         }}
         camera={{ position: [0, 0, 5], fov: 50 }}
       >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[2, 2, 2]} />
+        <Background />
+
         {cards.map((card, index) => (
           <AnimatedCard
             title={card.title}

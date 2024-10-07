@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Logo from "resources/logos/main-wide.png";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [hidden, setHidden] = useState(false);
@@ -8,6 +9,8 @@ const Header = () => {
   const [selectedPage, selectPage] = useState(null);
 
   const prevScrollY = useRef(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +36,30 @@ const Header = () => {
       <div className="absolute w-11/12 rounded-full bg-white bg-opacity-40 min-h-20 flex justify-between items-center px-10 pointer-events-auto backdrop-blur-sm">
         <img src={Logo} alt="logo" className="w-36" />
         <div className="flex gap-10 font-medium text-xl text-customblack">
-          <div>Home</div>
-          <div>Services</div>
-          <div>Our Projects</div>
-          <div>Carriers</div>
+          <div
+            className="cursor-pointer hover:text-primary"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </div>
+          <div
+            className="cursor-pointer hover:text-primary"
+            onClick={() => navigate("/services")}
+          >
+            Services
+          </div>
+          <div
+            className="cursor-pointer hover:text-primary"
+            onClick={() => navigate("/projects")}
+          >
+            Our Projects
+          </div>
+          <div
+            className="cursor-pointer hover:text-primary"
+            onClick={() => navigate("/carriers")}
+          >
+            Carriers
+          </div>
         </div>
         <Button>Contact us</Button>
       </div>

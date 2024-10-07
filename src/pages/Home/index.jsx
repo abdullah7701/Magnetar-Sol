@@ -19,7 +19,6 @@ import Logo from "resources/logos/white.png";
 import Facebook from "resources/icons/facebook.svg";
 import Twitter from "resources/icons/twitter.svg";
 import Instagram from "resources/icons/instagram.svg";
-import ProjectCardSlideshow from "components/animated/ProjectCardSlideshow";
 
 const Introduction = () => {
   const FancyText = ({ className, icon, delay = 0.15, children }) => {
@@ -307,10 +306,7 @@ const Upgrades = () => {
 const Cards = () => {
   return (
     <StickyWrapper id="cards" height={2800}>
-      <div
-        className="w-full h-[100vh] bg-red-100 bg-cover"
-        style={{ backgroundImage: `url(background.jpg)` }}
-      >
+      <div className="w-full h-[100vh] bg-red-100 bg-cover">
         <AnimatedCardSlideshow />
       </div>
     </StickyWrapper>
