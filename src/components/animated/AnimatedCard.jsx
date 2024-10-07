@@ -85,7 +85,7 @@ const AnimatedCard = ({ title, desc, index }) => {
       nodes.Plane002.material = new THREE.MeshPhysicalMaterial({
         roughness: 0.2,
         transmission: 0.7,
-        thickness: 0.5,
+        thickness: 1.5,
       });
     }
   }, [title, desc, scene, nodes, cardRef, hovered]);

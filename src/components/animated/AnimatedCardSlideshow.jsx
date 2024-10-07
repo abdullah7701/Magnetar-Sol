@@ -1,7 +1,8 @@
 import AnimatedCard from "./AnimatedCard";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
+import useInViewport from "hooks/useInViewport";
 
 const cards = [
   {
@@ -42,26 +43,51 @@ const Background = () => {
 };
 
 const AnimatedCardSlideshow = () => {
-  return (
-    <div className="absolute -Z-50 top-0 w-full h-full pointer-events-none select-none">
-      <Canvas
-        style={{
-          height: "100vh",
-          width: "100%",
-        }}
-        camera={{ position: [0, 0, 5], fov: 50 }}
-      >
-        <Background />
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = useRef(null);
 
-        {cards.map((card, index) => (
-          <AnimatedCard
-            title={card.title}
-            desc={card.desc}
-            index={index}
-            key={index}
-          />
-        ))}
-      </Canvas>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: "200px 0px" }
+    );
+
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="-z-50 top-0 w-full h-full pointer-events-none select-none bg-primary"
+    >
+      {isInView && (
+        <Canvas
+          style={{
+            height: "100vh",
+            width: "100%",
+          }}
+          camera={{ position: [0, 0, 5], fov: 50 }}
+        >
+          <Background />
+
+          {cards.map((card, index) => (
+            <AnimatedCard
+              title={card.title}
+              desc={card.desc}
+              index={index}
+              key={index}
+            />
+          ))}
+        </Canvas>
+      )}
     </div>
   );
 };

@@ -44,7 +44,7 @@ const Header = () => {
           </div>
           <div
             className="cursor-pointer hover:text-primary"
-            onClick={() => navigate("/services")}
+            onClick={() => navigate("/services/web")}
           >
             Services
           </div>

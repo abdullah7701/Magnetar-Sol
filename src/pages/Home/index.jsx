@@ -371,7 +371,7 @@ const Meeting = () => {
           minim veniam, quis nostrud exercitation
         </Text>
       </Animation>
-      <Animation className="flex justify-center" delay={1.4}>
+      <Animation className="flex justify-center" delay={0.8}>
         <div className="px-4 py-2 rounded-full bg-primary text-lg text-white font-medium cursor-pointer">
           Schedule a free call
         </div>
