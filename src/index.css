@@ -19,3 +19,20 @@
     stroke-dashoffset: 0;
   }
 }
+
+.custom-slick-dots {
+  display: flex !important;
+  gap: 20px;
+}
+
+.custom-slick-dots li button {
+  background-color: #f1f1f1;
+  width: 12px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 0px;
+}
+
+.custom-slick-dots li.slick-active button {
+  background-color: #2d62af;
+}

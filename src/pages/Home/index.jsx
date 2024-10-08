@@ -13,12 +13,10 @@ import FloatingPhone from "components/animated/FloatingPhone";
 import Book from "resources/icons/book.svg";
 import StickyWrapper from "components/StickyWrapper";
 import AnimatedCardSlideshow from "components/animated/AnimatedCardSlideshow";
-import { Review1, Review2 } from "components/animated/Reviews";
-import WebDev from "components/Services/WebDev";
-import Logo from "resources/logos/white.png";
-import Facebook from "resources/icons/facebook.svg";
-import Twitter from "resources/icons/twitter.svg";
-import Instagram from "resources/icons/instagram.svg";
+import WebDev from "components/ServicesHome/WebDev";
+import Reviews from "components/common/Reviews";
+import Meeting from "components/common/Meeting";
+import Footer from "components/common/Footer";
 
 const Introduction = () => {
   const FancyText = ({ className, icon, delay = 0.15, children }) => {
@@ -281,7 +279,7 @@ const Upgrades = () => {
   return (
     <div className="my-40">
       <div className="flex justify-between px-20 items-center">
-        <div className="text-[40px] font-semibold">
+        <div className="text-4xl font-semibold">
           <Animation>
             <Text underlined>Offer yourself</Text>
             <Text underlined className="text-secondary">
@@ -310,117 +308,6 @@ const Cards = () => {
         <AnimatedCardSlideshow />
       </div>
     </StickyWrapper>
-  );
-};
-
-const Reviews = () => {
-  return (
-    <div className="w-full h-[530px] bg-secondary grid grid-cols-2 relative pl-20 py-24 overflow-hidden">
-      <div className="mt-14">
-        <Animation className="font-semibold text-[44px]">
-          <Text className="text-white !decoration-primary" underlined>
-            What our clients
-          </Text>
-          <Text className="text-white"> have to say</Text>
-        </Animation>
-        <Animation delay={0.6}>
-          <Text className="text-white mt-5" div>
-            Lorem ipsum dolor sit amet, consur adipiscing elit, sed
-          </Text>
-          <Text className="text-white">do eiusmod tempor</Text>
-        </Animation>
-      </div>
-      <Animation>
-        <Review1 />
-      </Animation>
-      <Animation>
-        <Review2 />
-      </Animation>
-      <Animation>
-        <Review1
-          className="scale-90 opacity-50 ml-40"
-          start={275}
-          length={100}
-        />
-      </Animation>
-    </div>
-  );
-};
-
-const Meeting = () => {
-  return (
-    <div className="w-full flex flex-col items-center py-20">
-      <Animation
-        className="text-[44px] font-semibold text-center leading-tight mb-4"
-        delay={0.4}
-      >
-        <Text div underlined className="text-primary">
-          Schedule a meeting
-        </Text>
-        <Text div className="text-secondary">
-          with our experts
-        </Text>
-      </Animation>
-      <Animation
-        className="text-center max-w-[500px] font-semibold text-lg mb-10 leading-tight"
-        delay={0.8}
-      >
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation
-        </Text>
-      </Animation>
-      <Animation className="flex justify-center" delay={0.8}>
-        <div className="px-4 py-2 rounded-full bg-primary text-lg text-white font-medium cursor-pointer">
-          Schedule a free call
-        </div>
-      </Animation>
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <div className="bg-primary w-full text-white">
-      <div className="w-full flex justify-center px-32 pt-10 pb-40">
-        <div className="w-full flex justify-between">
-          <div className="w-1/2">
-            <img className="w-44" src={Logo} alt="logo"></img>
-            <div className="flex gap-4 mt-4 ml-2">
-              <img src={Facebook} className="w-6" alt="fb" />
-              <img src={Twitter} className="w-6" alt="tw" />
-              <img src={Instagram} className="w-6" alt="in" />
-            </div>
-          </div>
-          <div className="w-1/2">
-            <div className="w-full flex justify-between">
-              <div>
-                <div className="font-semibold text-lg mb-5">Services</div>
-                <div className="font-medium mb-3">Web Development</div>
-                <div className="font-medium mb-3">UI/UX Design</div>
-                <div className="font-medium mb-3">Graphic Design</div>
-              </div>
-              <div>
-                <div className="font-semibold text-lg mb-5">Support</div>
-                <div className="font-medium mb-3">How it works</div>
-                <div className="font-medium mb-3">Contact us</div>
-              </div>
-              <div>
-                <div className="font-semibold text-lg mb-5">About Us</div>
-                <div className="font-medium mb-3">Blog</div>
-                <div className="font-medium mb-3">Privacy policy</div>
-                <div className="font-medium mb-3">Terms of use</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-11/12 mx-auto border-t-2 border-white"></div>
-      <div className="py-6 text-center">
-        ©2024 Magnetar. All rights Reserved.
-      </div>
-    </div>
   );
 };
 

@@ -5,7 +5,7 @@ import { useState } from "react";
 const ServiceCardSlideshow = () => {
   const [selectedIndex, selectCard] = useState(-1);
   return (
-    <div className="flex justify-center gap-10 my-20">
+    <div className="w-full flex justify-center gap-10 mb-20 mt-10">
       {WEB_SERVICES.map((data, index) => (
         <ServiceCard
           data={data}

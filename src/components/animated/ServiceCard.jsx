@@ -3,10 +3,10 @@ const ServiceCard = ({ data, isSelected, onClick }) => {
 
   return (
     <div
-      className={`w-60 rounded-xl transition-all duration-300 h-[380px] cursor-pointer px-5 pt-4 select-none ${
+      className={`w-64 rounded-xl transition-all duration-300 h-[380px] cursor-pointer px-5 pt-4 select-none backdrop-blur-sm ${
         isSelected
           ? "bg-primary text-white scale-105"
-          : "bg-[#ECF4FAC9] text-primary"
+          : "bg-[#cbdfee9f] text-primary hover:scale-105"
       }`}
       onClick={onClick}
     >

@@ -7,12 +7,16 @@ import Text from "components/text/Text";
 import Laptop from "resources/images/laptop.png";
 import Clicker from "resources/icons/clickMe.svg";
 import ServiceCardSlideshow from "components/animated/ServiceCardSlideshow";
+import WebService from "components/Services/WebService";
+import Reviews from "components/common/Reviews";
+import Footer from "components/common/Footer";
+import Meeting from "components/common/Meeting";
 
 const ClickMarker = () => {
   return (
     <div className="my-20">
       <div className="flex justify-between px-20 items-center">
-        <div className="text-[40px] font-semibold">
+        <div className="text-4xl font-semibold">
           <Animation>
             <Text underlined>Crafting Websites</Text>
             <Text div className="text-secondary">
@@ -66,10 +70,14 @@ const WebServices = () => {
     <div>
       <Introduction />
       <ClickMarker />
-      <div className="w-[100vw] h-[200vw]">
+      <div className="w-[100vw] h-[200vw] relative overflow-hidden">
         <ServiceBubbles />
+        <ServiceCardSlideshow />
+        <WebService />
       </div>
-      <ServiceCardSlideshow />
+      <Reviews />
+      <Meeting />
+      <Footer />
     </div>
   );
 };

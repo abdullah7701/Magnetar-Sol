@@ -67,10 +67,10 @@ export const IntroBubbles = () => {
 
 export const ServiceBubbles = () => {
   return (
-    <div className="absolute w-full h-full opacity-80">
+    <div className="absolute -z-10 w-full opacity-80 pointer-events-none">
       <svg viewBox="0 0 100 200" className="w-full">
         <Bubble
-          coords={[4, 65, 16, 94, 8, 117, -3, 88, 4, 65]}
+          coords={[4, 15, 16, 44, 8, 67, -3, 38, 4, 15]}
           duration={50}
           fill="#24DBEF"
           r="5"
