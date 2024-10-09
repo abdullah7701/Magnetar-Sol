@@ -8,6 +8,7 @@ import Flask from "resources/images/technologies/flask.png";
 import Rails from "resources/images/technologies/rails.png";
 import Laravel from "resources/images/technologies/laravel.png";
 import Django from "resources/images/technologies/django.png";
+import InfiniteSlider from "components/common/Slider";
 
 const TitleAndImages = () => {
   return (
@@ -71,15 +72,28 @@ const Technologies = () => {
   );
 
   return (
-    <div className="w-full py-10 flex items-center rounded-2xl shadow-lg mt-10">
-      <TechImg src={Django} />
-      <Breaker />
-      <TechImg src={Laravel} />
-      <Breaker />
-      <TechImg src={Rails} />
-      <Breaker />
-      <TechImg src={Flask} />
-    </div>
+    <InfiniteSlider
+      className={"relative shadow-xl py-10 px-4 rounded-2xl mt-20 mb-40"}
+    >
+      <div className="flex items-center rounded-2xl">
+        <TechImg src={Django} />
+        <Breaker />
+        <TechImg src={Laravel} />
+        <Breaker />
+        <TechImg src={Rails} />
+        <Breaker />
+        <TechImg src={Flask} />
+        <Breaker />
+        <TechImg src={Django} />
+        <Breaker />
+        <TechImg src={Laravel} />
+        <Breaker />
+        <TechImg src={Rails} />
+        <Breaker />
+        <TechImg src={Flask} />
+        <Breaker />
+      </div>
+    </InfiniteSlider>
   );
 };
 

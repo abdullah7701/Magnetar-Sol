@@ -70,7 +70,7 @@ const WebServices = () => {
     <div>
       <Introduction />
       <ClickMarker />
-      <div className="w-[100vw] h-[200vw] relative overflow-hidden">
+      <div className="w-[100vw] relative overflow-hidden">
         <ServiceBubbles />
         <ServiceCardSlideshow />
         <WebService />
