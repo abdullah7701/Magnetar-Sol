@@ -11,12 +11,10 @@ import Wave from "resources/backgrounds/wave.svg";
 import Laptop from "resources/images/laptop.png";
 import FloatingPhone from "components/animated/FloatingPhone";
 import Book from "resources/icons/book.svg";
-import StickyWrapper from "components/StickyWrapper";
-import AnimatedCardSlideshow from "components/animated/AnimatedCardSlideshow";
-import WebDev from "components/ServicesHome/WebDev";
 import Reviews from "components/common/Reviews";
 import Meeting from "components/common/Meeting";
 import Footer from "components/common/Footer";
+import Projects from "components/common/Projects";
 
 const Introduction = () => {
   const FancyText = ({ className, icon, delay = 0.15, children }) => {
@@ -301,16 +299,6 @@ const Upgrades = () => {
   );
 };
 
-const Cards = () => {
-  return (
-    <StickyWrapper id="cards" height={2800}>
-      <div className="w-full h-[100vh] bg-red-100 bg-cover">
-        <AnimatedCardSlideshow />
-      </div>
-    </StickyWrapper>
-  );
-};
-
 const Home = () => {
   return (
     <div>
@@ -318,11 +306,8 @@ const Home = () => {
       <OurOffer />
       <Benefits />
       <Upgrades />
-      <Cards />
-      <WebDev />
+      <Projects />
       <Reviews />
-      <Meeting />
-      <Footer />
     </div>
   );
 };

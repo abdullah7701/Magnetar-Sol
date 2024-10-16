@@ -1,6 +1,6 @@
 import Animation from "components/animated/Animation";
 import {
-  IntroBubbles,
+  IntroBubblesWrapper,
   ServiceBubbles,
 } from "components/animated/CustomSvgAnimations/Bubbles";
 import Text from "components/text/Text";
@@ -39,8 +39,7 @@ const ClickMarker = () => {
 
 const Introduction = () => {
   return (
-    <div className="relative w-full h-[100vh] bg-mid">
-      <IntroBubbles />
+    <IntroBubblesWrapper img={Laptop}>
       <div className="absolute z-10 w-full h-full flex flex-col justify-center items-center text-white text-lg leading-tight font-semibold">
         <Animation>
           <Text className="text-white text-5xl mb-8" div>
@@ -59,10 +58,7 @@ const Introduction = () => {
           </Text>
         </Animation>
       </div>
-      <div className="absolute z-20 w-full h-full flex justify-end items-end">
-        <img src={Laptop} alt="" className="w-[30vw]" />
-      </div>
-    </div>
+    </IntroBubblesWrapper>
   );
 };
 const WebServices = () => {
@@ -76,8 +72,6 @@ const WebServices = () => {
         <WebService />
       </div>
       <Reviews />
-      <Meeting />
-      <Footer />
     </div>
   );
 };

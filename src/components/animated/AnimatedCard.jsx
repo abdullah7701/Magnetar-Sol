@@ -25,7 +25,7 @@ function splitIntoLines(text) {
   return lines;
 }
 
-const AnimatedCard = ({ title, desc, index }) => {
+const AnimatedCard = ({ title, desc, index, parentYPosition = 0 }) => {
   const { scene, nodes } = useClonedGLTF("3d models/card.glb");
 
   const cardRef = useRef(null);
@@ -89,12 +89,14 @@ const AnimatedCard = ({ title, desc, index }) => {
       });
     }
   }, [title, desc, scene, nodes, cardRef, hovered]);
-
+  console.log("RR");
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
 
-    const { x, y, rotationX, rotationY, rotationZ } =
-      calculateCardPosition(index);
+    const { x, y, rotationX, rotationY, rotationZ } = calculateCardPosition(
+      index,
+      parentYPosition
+    );
 
     if (cardRef.current) {
       const bounce = Math.sin(time * bounceSpeed) * bounceHeight;

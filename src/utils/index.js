@@ -7,8 +7,9 @@ const calculateY = (x) => {
   );
 };
 
-export const calculateCardPosition = (index) => {
-  const height = window.scrollY - 2000 - 450 * index;
+export const calculateCardPosition = (index, parentYPosition) => {
+  console.log(parentYPosition);
+  const height = window.scrollY - parentYPosition + 480 - 450 * index;
   let x = 9 - height / 200;
   x = Math.max(-3.5 + index * 2.3, x);
   const y = calculateY(x);

@@ -1,3 +1,6 @@
+import { ANIMATIONS } from "constants/animations";
+import Animation from "../Animation";
+
 const Bubble = ({ coords, duration, fill, r }) => {
   const xVals = coords.filter((_, index) => index % 2 === 0).join(";");
   const yVals = coords.filter((_, index) => index % 2 !== 0).join(";");
@@ -20,47 +23,57 @@ const Bubble = ({ coords, duration, fill, r }) => {
   );
 };
 
-export const IntroBubbles = () => {
+export const IntroBubblesWrapper = ({ img, className = "", children }) => {
   return (
-    <div className="absolute w-full h-full opacity-80">
-      <svg viewBox="0 0 200 100" className="w-full h-full">
-        <Bubble
-          coords={[177, 23, 185, 80, 150, 78, 152, 44, 177, 23]}
-          duration={50}
-          fill="#24BDEF"
-          r="25"
-        />
-        <Bubble
-          coords={[200, 19, 205, 62, 185, 88, 182, 47, 190, 19, 200, 19]}
-          duration={25}
-          fill="#FFFFFF"
-          r="18"
-        />
-        <Bubble
-          coords={[10, 8, 30, 70, 120, 80, 30, 40, 10, 8]}
-          duration={35}
-          fill="#24BDEF"
-          r="15"
-        />
-        <Bubble
-          coords={[59, 33, 160, 40, 147, 89, 60, 55, 59, 33]}
-          duration={35}
-          fill="#0F77BE"
-          r="6"
-        />{" "}
-        <Bubble
-          coords={[25, 50, 55, 87, 132, 90, 165, 50, 135, 10, 57, 13, 25, 50]}
-          duration={35}
-          fill="#FFFFFF"
-          r="3.5"
-        />
-        <Bubble
-          coords={[160, 33, 140, 72, 85, 70, 91, 34, 135, 21, 160, 33]}
-          duration={30}
-          fill="#FFFFFF"
-          r="3"
-        />
-      </svg>
+    <div className={`relative w-full h-[90vh] bg-mid ${className}`}>
+      <div className="absolute w-full h-full opacity-80">
+        <svg viewBox="0 0 200 100" className="w-full h-full">
+          <Bubble
+            coords={[177, 23, 185, 80, 150, 78, 152, 44, 177, 23]}
+            duration={50}
+            fill="#24BDEF"
+            r="22"
+          />
+          <Bubble
+            coords={[200, 19, 205, 62, 185, 88, 182, 47, 190, 19, 200, 19]}
+            duration={25}
+            fill="#FFFFFF"
+            r="15"
+          />
+          <Bubble
+            coords={[10, 8, 30, 70, 120, 80, 30, 40, 10, 8]}
+            duration={35}
+            fill="#24BDEF"
+            r="13"
+          />
+          <Bubble
+            coords={[59, 33, 160, 40, 147, 89, 60, 55, 59, 33]}
+            duration={35}
+            fill="#0F77BE"
+            r="5.5"
+          />{" "}
+          <Bubble
+            coords={[25, 50, 55, 87, 132, 90, 165, 50, 135, 10, 57, 13, 25, 50]}
+            duration={35}
+            fill="#FFFFFF"
+            r="3"
+          />
+          <Bubble
+            coords={[160, 33, 140, 72, 85, 70, 91, 34, 135, 21, 160, 33]}
+            duration={30}
+            fill="#FFFFFF"
+            r="2.5"
+          />
+        </svg>
+      </div>
+      {img && (
+        <div className="absolute z-20 w-full h-full flex justify-end items-end">
+          <Animation animation={ANIMATIONS.fadeIn}>
+            <img src={img} alt="" className="w-[30vw] translate-y-[8vh]" />
+          </Animation>
+        </div>
+      )}
+      {children}
     </div>
   );
 };

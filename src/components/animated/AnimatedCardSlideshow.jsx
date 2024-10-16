@@ -42,9 +42,10 @@ const Background = () => {
   );
 };
 
-const AnimatedCardSlideshow = () => {
+const AnimatedCardSlideshow = ({ wrapperRef }) => {
   const [isInView, setIsInView] = useState(false);
   const containerRef = useRef(null);
+  const [yPosition, setYPosition] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,6 +63,25 @@ const AnimatedCardSlideshow = () => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (wrapperRef.current) {
+        const { top } = wrapperRef.current.getBoundingClientRect();
+        setYPosition(Math.round(top + window.scrollY));
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleResize);
+    };
+  }, [wrapperRef]);
 
   return (
     <div
@@ -84,6 +104,7 @@ const AnimatedCardSlideshow = () => {
               desc={card.desc}
               index={index}
               key={index}
+              parentYPosition={yPosition}
             />
           ))}
         </Canvas>

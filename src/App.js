@@ -11,6 +11,9 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import OurProjects from "pages/OurProjects";
+import Meeting from "components/common/Meeting";
+import Footer from "components/common/Footer";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -30,9 +33,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/services/web" element={<WebServices />}></Route>
+            <Route path="/projects" element={<OurProjects />}></Route>
           </Routes>
         </Wrapper>
       </Router>
+      <Meeting />
+      <Footer />
     </div>
   );
 }
