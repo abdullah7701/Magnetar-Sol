@@ -1,6 +1,7 @@
 import Animation from "components/animated/Animation";
 import { IntroBubblesWrapper } from "components/animated/CustomSvgAnimations/Bubbles";
 import Projects from "components/common/Projects";
+import Reviews from "components/common/Reviews";
 import Text from "components/text/Text";
 import StartupIcon from "resources/images/startup.png";
 
@@ -26,6 +27,7 @@ const OurProjects = () => {
         </div>
       </IntroBubblesWrapper>
       <Projects />
+      <Reviews />
     </div>
   );
 };

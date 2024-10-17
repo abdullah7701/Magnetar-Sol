@@ -106,7 +106,7 @@ const Introduction = () => {
           <svg className="w-full h-full" viewBox="0 0 500 500">
             <path
               d="M 370 0 l 0 120 q 0 130 -140 70 t -140 40 t 100 70 t 160 -20 t 20 80 t 0 120"
-              stroke="#0F77BE"
+              stroke="#0284C7"
               fill="none"
               strokeWidth={3}
               strokeOpacity={0.5}

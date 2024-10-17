@@ -31,37 +31,37 @@ export const IntroBubblesWrapper = ({ img, className = "", children }) => {
           <Bubble
             coords={[177, 23, 185, 80, 150, 78, 152, 44, 177, 23]}
             duration={50}
-            fill="#24BDEF"
+            fill="#38BDF8"
             r="22"
           />
           <Bubble
             coords={[200, 19, 205, 62, 185, 88, 182, 47, 190, 19, 200, 19]}
             duration={25}
-            fill="#FFFFFF"
+            fill="#F9FAFB"
             r="15"
           />
           <Bubble
             coords={[10, 8, 30, 70, 120, 80, 30, 40, 10, 8]}
             duration={35}
-            fill="#24BDEF"
+            fill="#38BDF8"
             r="13"
           />
           <Bubble
             coords={[59, 33, 160, 40, 147, 89, 60, 55, 59, 33]}
             duration={35}
-            fill="#0F77BE"
+            fill="#0284C7"
             r="5.5"
           />{" "}
           <Bubble
             coords={[25, 50, 55, 87, 132, 90, 165, 50, 135, 10, 57, 13, 25, 50]}
             duration={35}
-            fill="#FFFFFF"
+            fill="#F9FAFB"
             r="3"
           />
           <Bubble
             coords={[160, 33, 140, 72, 85, 70, 91, 34, 135, 21, 160, 33]}
             duration={30}
-            fill="#FFFFFF"
+            fill="#F9FAFB"
             r="2.5"
           />
         </svg>
@@ -91,7 +91,7 @@ export const ServiceBubbles = () => {
         <Bubble
           coords={[65, 71, 83, 98, 65, 103, 62, 86, 65, 71]}
           duration={40}
-          fill="#0F77BE"
+          fill="#0284C7"
           r="2"
         />
         <Bubble

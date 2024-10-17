@@ -18,7 +18,6 @@ const Projects = () => {
         </div>
       </StickyWrapper>
       <WebDev />
-      <Reviews />
     </div>
   );
 };

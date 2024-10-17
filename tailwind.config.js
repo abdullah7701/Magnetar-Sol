@@ -7,10 +7,10 @@ module.exports = {
         urbanist: ["Urbanist", "sans-serif"],
       },
       colors: {
-        primary: "#0F77BE",
-        secondary: "#6BCCE2",
+        primary: "#0284C7",
+        secondary: "#22D3EE",
         mid: "#24DBEF",
-        customblack: "#343434",
+        customblack: "#1F2937",
       },
     },
   },

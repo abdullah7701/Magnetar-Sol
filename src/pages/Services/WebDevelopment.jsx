@@ -9,8 +9,6 @@ import Clicker from "resources/icons/clickMe.svg";
 import ServiceCardSlideshow from "components/animated/ServiceCardSlideshow";
 import WebService from "components/Services/WebService";
 import Reviews from "components/common/Reviews";
-import Footer from "components/common/Footer";
-import Meeting from "components/common/Meeting";
 
 const ClickMarker = () => {
   return (
