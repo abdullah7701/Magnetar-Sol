@@ -3,7 +3,7 @@ import PeopleIcon from "resources/icons/people.svg";
 
 const CourseCard = ({ course }) => {
   return (
-    <div className="p-7 w-[520px] bg-slate-100 bg-opacity-80 rounded-2xl card-container">
+    <div className="p-7 w-[520px] bg-slate-100 bg-opacity-80 rounded-2xl card-container backdrop-blur-sm shadow-2xl">
       <img
         src={course.cover}
         alt="course img"

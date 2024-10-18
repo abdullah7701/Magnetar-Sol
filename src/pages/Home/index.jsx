@@ -12,8 +12,6 @@ import Laptop from "resources/images/laptop.png";
 import FloatingPhone from "components/animated/FloatingPhone";
 import Book from "resources/icons/book.svg";
 import Reviews from "components/common/Reviews";
-import Meeting from "components/common/Meeting";
-import Footer from "components/common/Footer";
 import Projects from "components/common/Projects";
 
 const Introduction = () => {

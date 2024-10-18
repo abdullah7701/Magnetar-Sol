@@ -37,6 +37,6 @@
   background-color: #1e40af;
 }
 
-.distorted .card-container:nth-child(2n) {
-  transform: translateY(-200px);
+.distorted .card-container:nth-child(2n + 1) {
+  transform: translateY(-120px);
 }

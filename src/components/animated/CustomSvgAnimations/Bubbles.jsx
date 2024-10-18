@@ -69,7 +69,11 @@ export const IntroBubblesWrapper = ({ img, className = "", children }) => {
       {img && (
         <div className="absolute z-20 w-full h-full flex justify-end items-end">
           <Animation animation={ANIMATIONS.fadeIn}>
-            <img src={img} alt="" className="w-[30vw] translate-y-[8vh]" />
+            <img
+              src={img}
+              alt=""
+              className="w-[30vw] translate-y-[8vh] max-w-[500px]"
+            />
           </Animation>
         </div>
       )}
