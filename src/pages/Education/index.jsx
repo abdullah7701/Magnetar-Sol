@@ -4,11 +4,16 @@ import CourseCard from "components/common/CourseCard";
 import Video from "components/common/Video";
 import Text from "components/text/Text";
 import { COURSES } from "constants/courses";
-import EducationIcon from "resources/images/education.png";
+import EducationImage from "resources/images/education.png";
 import educationVideoPoster from "resources/images/educationVideoPoster.png";
 import ArrowRightIcon from "resources/icons/arrowRight.svg";
 import { ANIMATIONS } from "constants/animations";
 import Wave from "resources/backgrounds/wave.svg";
+import { BLOGS } from "constants/blogs";
+import FAQImage from "resources/images/FAQ.png";
+import DownIcon from "resources/icons/cheveronDown.svg";
+import { useEffect, useRef, useState } from "react";
+import { FAQS } from "constants/FAQs";
 
 const VideoHeader = () => {
   return (
@@ -51,14 +56,14 @@ const Courses = () => {
         <CourseCard course={course} />
       ))}
       <div className="w-[520px] flex justify-start">
-        <div className="rounded-full pl-6 flex justify-between items-center border-2 border-mid h-fit cursor-pointer">
-          <div className="mr-4 text-primary font-semibold text-2xl select-none">
+        <div className="relative rounded-full flex justify-between items-center border-2 border-primary hover:border-secondary w-[300px] h-12 cursor-pointer group transition-colors duration-500">
+          <div className="text-primary group-hover:text-secondary font-semibold text-2xl select-none w-full text-center transition-all duration-500">
             View All Courses
           </div>
           <img
             src={ArrowRightIcon}
             alt="->"
-            className="w-12 h-12 rounded-full bg-mid p-3"
+            className="absolute right-[252px] group-hover:right-0 w-12 h-12 rounded-full bg-primary group-hover:bg-mid p-3 transition-all duration-500"
           />
         </div>
       </div>
@@ -93,7 +98,7 @@ const FancyBox = ({
 
 const Introduction = () => {
   return (
-    <IntroBubblesWrapper img={EducationIcon} className="mb-20">
+    <IntroBubblesWrapper img={EducationImage} className="mb-20">
       <div className="absolute z-10 w-full h-full flex flex-col justify-center items-center text-white text-lg leading-tight font-semibold">
         <Animation>
           <Text className="text-white text-5xl mb-8" div>
@@ -189,9 +194,9 @@ const Blogs = () => {
         <img
           src={image}
           alt=""
-          className="w-full h-[420px] object-cover mb-7"
+          className="w-full h-96 object-cover mb-5 rounded-lg"
         />
-        <div className="text-primary text-[28px] font-semibold capitalize mb-5">
+        <div className="text-primary text-[28px] font-semibold capitalize mb-5 leading-tight cursor-pointer">
           {title}
         </div>
         <div className="text-zinc-400 text-sm font-semibold uppercase tracking-wide mb-3">
@@ -211,12 +216,12 @@ const Blogs = () => {
     const { image, title, link } = blog;
     return (
       <div className="w-[480px] flex justify-between">
-        <img src={image} alt="" className="w-44 h-44" />
+        <img src={image} alt="" className="w-44 h-44 mr-5 rounded-md" />
         <div className="flex flex-col justify-center">
           <div className="text-zinc-400 text-sm font-semibold uppercase tracking-wide mb-3">
             Blog Topic
           </div>
-          <div className="text-primary text-[28px] font-semibold capitalize">
+          <div className="text-primary text-2xl font-semibold capitalize leading-tight cursor-pointer">
             {title}
           </div>
         </div>
@@ -227,9 +232,91 @@ const Blogs = () => {
   return (
     <div>
       <BlogHeader />
-      <div className="flex justify-start flex-wrap">
-        <div></div>
-        <div></div>
+      <div className="flex justify-center flex-col md:flex-row w-fit">
+        <div className="min-w-1/2 mr-10">
+          <MainBlog blog={BLOGS[0]} />
+        </div>
+        <div className="flex flex-wrap justify-start gap-10">
+          <SubBlog blog={BLOGS[1]} />
+          <SubBlog blog={BLOGS[2]} />
+          <SubBlog blog={BLOGS[3]} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FAQsHeader = () => {
+  return (
+    <div className="text-4xl font-semibold mb-10">
+      <Animation>
+        <Text className="leading-tight">Frequently</Text>
+        <Text
+          div
+          className="text-secondary !decoration-primary decoration-4"
+          underlined
+        >
+          Asked Questions
+        </Text>
+      </Animation>
+    </div>
+  );
+};
+
+const FAQs = () => {
+  const FAQEntry = ({ faq }) => {
+    const [visible, setVisible] = useState(false);
+    const { question, answer } = faq;
+    const contentRef = useRef(null);
+    const [contentHeight, setContentHeight] = useState(0);
+
+    useEffect(() => {
+      if (contentRef.current) {
+        setContentHeight(visible ? contentRef.current.scrollHeight : 0);
+      }
+    }, [visible, answer]);
+
+    return (
+      <div>
+        <div className="flex items-center mb-2">
+          <img
+            src={DownIcon}
+            alt="Toggle visibility"
+            className={`w-5 h-5 ${
+              visible ? "rotate-180" : "rotate-0"
+            } transition-all duration-200 mr-4 cursor-pointer`}
+            onClick={() => setVisible(!visible)}
+          />
+          <div className="text-primary text-2xl font-semibold">{question}</div>
+        </div>
+        <div
+          ref={contentRef}
+          style={{ height: contentHeight }}
+          className={`pl-2 pr-10 text-gray-800 text-lg font-medium overflow-hidden transition-all duration-500 leading-snug mb-3`}
+        >
+          {answer}
+        </div>
+      </div>
+    );
+  };
+
+  const Divider = () => (
+    <div className="w-full h-0 border border-black mb-6"></div>
+  );
+
+  return (
+    <div className="flex flex-wrap justify-between mt-40">
+      <div className="w-[550px] pr-16">
+        <FAQsHeader />
+        {FAQS.map((faq, index) => (
+          <div>
+            <FAQEntry faq={faq} />
+            {index !== FAQS.length - 1 && <Divider />}
+          </div>
+        ))}
+      </div>
+      <div className="w-[550px]">
+        <img src={FAQImage} alt="" className="w-full h-[500px]" />
       </div>
     </div>
   );
@@ -250,6 +337,10 @@ const Education = () => {
         <Courses />
       </div>
       <Stats />
+      <div className="w-5/6 mx-auto justify-center max-w-[1200px]">
+        <Blogs />
+        <FAQs />
+      </div>
     </div>
   );
 };

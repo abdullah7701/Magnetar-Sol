@@ -15,6 +15,7 @@ import OurProjects from "pages/OurProjects";
 import Meeting from "components/common/Meeting";
 import Footer from "components/common/Footer";
 import Education from "pages/Education";
+import Courses from "pages/Courses";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
             <Route path="/services/web" element={<WebServices />}></Route>
             <Route path="/projects" element={<OurProjects />}></Route>
             <Route path="/education" element={<Education />}></Route>
+            <Route path="/courses" element={<Courses />}></Route>
           </Routes>
         </Wrapper>
       </Router>
