@@ -2,26 +2,7 @@ import AnimatedCard from "./AnimatedCard";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
-import useInViewport from "hooks/useInViewport";
-
-const cards = [
-  {
-    title: "UI/UX Design",
-    desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
-  },
-  {
-    title: "Web development",
-    desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
-  },
-  {
-    title: "SEO",
-    desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
-  },
-  {
-    title: "Automation",
-    desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
-  },
-];
+import { PROJECTS } from "constants/projects";
 
 const Background = () => {
   const bgTexture = useLoader(THREE.TextureLoader, "background.jpg");
@@ -42,7 +23,11 @@ const Background = () => {
   );
 };
 
-const AnimatedCardSlideshow = ({ wrapperRef }) => {
+const AnimatedCardSlideshow = ({
+  wrapperRef,
+  selectedProject,
+  selectProject,
+}) => {
   const [isInView, setIsInView] = useState(false);
   const containerRef = useRef(null);
   const [yPosition, setYPosition] = useState(0);
@@ -59,6 +44,7 @@ const AnimatedCardSlideshow = ({ wrapperRef }) => {
 
     return () => {
       if (containerRef.current) {
+        // eslint-disable-next-line
         observer.unobserve(containerRef.current);
       }
     };
@@ -98,13 +84,15 @@ const AnimatedCardSlideshow = ({ wrapperRef }) => {
         >
           <Background />
 
-          {cards.map((card, index) => (
+          {PROJECTS.map((card, index) => (
             <AnimatedCard
               title={card.title}
               desc={card.desc}
               index={index}
               key={index}
               parentYPosition={yPosition}
+              isSelected={index === selectedProject}
+              onClick={() => selectProject(index)}
             />
           ))}
         </Canvas>

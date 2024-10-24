@@ -9,6 +9,8 @@ import Clicker from "resources/icons/clickMe.svg";
 import ServiceCardSlideshow from "components/animated/ServiceCardSlideshow";
 import WebService from "components/Services/WebService";
 import Reviews from "components/common/Reviews";
+import { useState } from "react";
+import { WEB_SERVICES } from "constants/serviceData";
 
 const ClickMarker = () => {
   return (
@@ -60,14 +62,19 @@ const Introduction = () => {
   );
 };
 const WebServices = () => {
+  const [selectedIndex, selectCard] = useState(0);
+
   return (
     <div>
       <Introduction />
       <ClickMarker />
       <div className="w-[100vw] relative overflow-hidden">
         <ServiceBubbles />
-        <ServiceCardSlideshow />
-        <WebService />
+        <ServiceCardSlideshow
+          selectCard={selectCard}
+          selectedIndex={selectedIndex}
+        />
+        {WEB_SERVICES[selectedIndex].component}
       </div>
       <Reviews />
     </div>

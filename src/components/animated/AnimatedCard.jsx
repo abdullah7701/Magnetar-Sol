@@ -25,7 +25,14 @@ function splitIntoLines(text) {
   return lines;
 }
 
-const AnimatedCard = ({ title, desc, index, parentYPosition = 0 }) => {
+const AnimatedCard = ({
+  title,
+  desc,
+  index,
+  isSelected,
+  onClick,
+  parentYPosition = 0,
+}) => {
   const { scene, nodes } = useClonedGLTF("3d models/card.glb");
 
   const cardRef = useRef(null);
@@ -48,7 +55,7 @@ const AnimatedCard = ({ title, desc, index, parentYPosition = 0 }) => {
     canvas.height = 1024;
 
     ctx.fillStyle = "black";
-    if (hovered) ctx.fillStyle = "#FF8822";
+    if (hovered || isSelected) ctx.fillStyle = "#FF8822";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
@@ -88,7 +95,7 @@ const AnimatedCard = ({ title, desc, index, parentYPosition = 0 }) => {
         thickness: 1.5,
       });
     }
-  }, [title, desc, scene, nodes, cardRef, hovered]);
+  }, [title, desc, scene, nodes, cardRef, hovered, isSelected]);
   console.log("RR");
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
@@ -147,6 +154,7 @@ const AnimatedCard = ({ title, desc, index, parentYPosition = 0 }) => {
     <group
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
+      onClick={() => onClick()}
     >
       <primitive object={scene} ref={cardRef} scale={[0.25, 0.25, 0.25]} />
     </group>

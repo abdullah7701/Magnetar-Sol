@@ -1,4 +1,5 @@
 // Web Service Icons
+import WebService from "components/Services/WebService";
 import webIcon1 from "resources/icons/services/web/icon1.svg";
 import webIcon1s from "resources/icons/services/web/icon1s.svg";
 import webIcon2 from "resources/icons/services/web/icon2.svg";
@@ -20,24 +21,28 @@ export const WEB_SERVICES = [
     desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
     icon: webIcon1,
     iconSelected: webIcon1s,
+    component: <WebService />,
   },
   {
     title: "CMS Development",
     desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
     icon: webIcon2,
     iconSelected: webIcon2s,
+    component: <WebService />,
   },
   {
     title: "Custom Dashboards",
     desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
     icon: webIcon3,
     iconSelected: webIcon3s,
+    component: <WebService />,
   },
   {
     title: "Responsive Design",
     desc: "My first thought about art, as a child, was that the artist brings something into the world that didn't exist before, and that he does it without destroying something else",
     icon: webIcon4,
     iconSelected: webIcon4s,
+    component: <WebService />,
   },
 ];
 
