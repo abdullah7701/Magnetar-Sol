@@ -14,6 +14,7 @@ import FAQImage from "resources/images/FAQ.png";
 import DownIcon from "resources/icons/cheveronDown.svg";
 import { useEffect, useRef, useState } from "react";
 import { FAQS } from "constants/FAQs";
+import { useNavigate } from "react-router-dom";
 
 const VideoHeader = () => {
   return (
@@ -50,13 +51,17 @@ const CoursesHeader = () => {
 };
 
 const Courses = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-end flex-row-reverse flex-wrap gap-20 distorted">
       {[...COURSES, COURSES[0]].map((course) => (
         <CourseCard course={course} />
       ))}
       <div className="w-[520px] flex justify-start">
-        <div className="relative rounded-full flex justify-between items-center border-2 border-primary hover:border-secondary w-[300px] h-12 cursor-pointer group transition-colors duration-500">
+        <div
+          className="relative rounded-full flex justify-between items-center border-2 border-primary hover:border-secondary w-[300px] h-12 cursor-pointer group transition-colors duration-500"
+          onClick={() => navigate("/courses")}
+        >
           <div className="text-primary group-hover:text-secondary font-semibold text-2xl select-none w-full text-center transition-all duration-500">
             View All Courses
           </div>
@@ -278,14 +283,16 @@ const FAQs = () => {
 
     return (
       <div>
-        <div className="flex items-center mb-2">
+        <div
+          className="flex items-center mb-2 cursor-pointer"
+          onClick={() => setVisible(!visible)}
+        >
           <img
             src={DownIcon}
             alt="Toggle visibility"
             className={`w-5 h-5 ${
               visible ? "rotate-180" : "rotate-0"
             } transition-all duration-200 mr-4 cursor-pointer`}
-            onClick={() => setVisible(!visible)}
           />
           <div className="text-primary text-2xl font-semibold">{question}</div>
         </div>

@@ -17,6 +17,8 @@ export const COURSE_CATEGORIES = {
   WEB_DEVELOPMENT: "Web Dev",
 };
 
+export const MAX_COURSES_PER_PAGE = 10;
+
 export const COURSE_CATEGORIES_LOGOS = {
   ALL: {
     normal: CourseIcon1,

@@ -50,6 +50,12 @@ const Header = () => {
           </div>
           <div
             className="cursor-pointer hover:text-primary"
+            onClick={() => navigate("/education")}
+          >
+            Education
+          </div>
+          <div
+            className="cursor-pointer hover:text-primary"
             onClick={() => navigate("/projects")}
           >
             Our Projects

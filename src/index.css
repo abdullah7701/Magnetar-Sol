@@ -40,3 +40,11 @@
 .distorted .card-container:nth-child(2n + 1) {
   transform: translateY(-120px);
 }
+
+.page-link {
+  border-radius: 50% !important;
+}
+
+.active .page-link {
+  background-color: #0284c7 !important;
+}
