@@ -51,10 +51,30 @@ const CoursesHeader = () => {
 };
 
 const Courses = () => {
+  const [courses, setCourses] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(
+      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/${process.env.REACT_APP_COURSE_TABLE}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setCourses(data.records.map((record) => record.fields));
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  if (!courses) return <div>Loading...</div>;
   return (
     <div className="flex justify-end flex-row-reverse flex-wrap gap-20 distorted">
-      {[...COURSES, COURSES[0]].map((course) => (
+      {courses.slice(0, 5).map((course) => (
         <CourseCard course={course} />
       ))}
       <div className="w-[520px] flex justify-start">

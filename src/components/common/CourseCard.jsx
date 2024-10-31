@@ -2,10 +2,11 @@ import ClockIcon from "resources/icons/clock.svg";
 import PeopleIcon from "resources/icons/people.svg";
 
 const CourseCard = ({ course }) => {
+  debugger;
   return (
     <div className="p-6 w-[470px] bg-slate-100 bg-opacity-80 rounded-2xl card-container backdrop-blur-sm shadow-2xl">
       <img
-        src={course.cover}
+        src={course.cover[0].url}
         alt="course img"
         className="w-full h-64 rounded-2xl object-fill mb-4"
       />
