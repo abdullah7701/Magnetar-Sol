@@ -9,8 +9,6 @@ export const getAllCourses = async () => {
       }
     );
     const data = await response.json();
-    debugger;
-    const a = await GetCourseAndTopicsByCourseId("web-dev");
     return data.records.map((record) => record.fields);
   } catch (e) {
     console.log(e);
@@ -37,10 +35,7 @@ export const getTopicsByCourseId = async (courseId) => {
   }
 };
 
-export const GetCourseAndTopicsByCourseId = async (
-  courseId,
-  fetchTopics = true
-) => {
+export const getCourseById = async (courseId) => {
   try {
     const response = await fetch(
       `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/${process.env.REACT_APP_COURSE_TABLE}?filterByFormula={id}="${courseId}"`,
@@ -56,13 +51,20 @@ export const GetCourseAndTopicsByCourseId = async (
     }
 
     const data = await response.json();
-    const course = data.records.length > 0 ? data.records[0].fields : null;
+    return data.records.length > 0 ? data.records[0].fields : null;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
+export const GetCourseAndTopicsByCourseId = async (courseId) => {
+  try {
+    const course = await getCourseById(courseId);
 
     if (!course) {
-      return null;
+      return { course: null, topics: [] };
     }
-
-    if (!fetchTopics) return { course: course };
 
     const topics = await getTopicsByCourseId(courseId);
 
@@ -72,7 +74,7 @@ export const GetCourseAndTopicsByCourseId = async (
     };
   } catch (e) {
     console.log(e);
-    return null;
+    return { course: null, topics: [] };
   }
 };
 
@@ -112,6 +114,67 @@ export const getSectionsByPageId = async (pageId) => {
   }
 };
 
+export const getAllBlogs = async () => {
+  debugger;
+
+  try {
+    const response = await fetch(
+      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/${process.env.REACT_APP_BLOG_TABLE}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data.records.map((record) => record.fields);
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+};
+
+export const getBlogById = async (blogId) => {
+  try {
+    const response = await fetch(
+      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/${process.env.REACT_APP_BLOG_TABLE}?filterByFormula={id}="${blogId}"`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Error fetching course: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.records.length > 0 ? data.records[0].fields : null;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
+export const getSectionsByBlogId = async (blogId) => {
+  try {
+    const response = await fetch(
+      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/${process.env.REACT_APP_SECTION_TABLE}?filterByFormula=FIND("${blogId}", {Blogs})`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data.records.map((record) => record.fields);
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+};
+
 // STRUCTURE OF COURSES:
 // Courses table will have courses as rows. Each course will have multiple topics and multiple pages.
 // Each page will have multiple sections. For each section, there would be an identifier and parameters (all columns of section table)
@@ -134,7 +197,7 @@ export const getSectionsByPageId = async (pageId) => {
 // On fetch of sections, its pretty simple react. We check through which category each section belongs and pass params in particular component
 
 // STRUCTURE OF BLOGS:
-// Blogs will be single page entities. They might share the sections table with course or create a separate section table if too many changes are there.
+// Blogs will be single page entities. They will share the sections table with course.
 // Link to blog will be simple: /blog/{id}
 
 // Note: id mentioned is field "id" not the original "id" of row
