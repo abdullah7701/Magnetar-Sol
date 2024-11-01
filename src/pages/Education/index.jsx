@@ -15,6 +15,7 @@ import DownIcon from "resources/icons/cheveronDown.svg";
 import { useEffect, useRef, useState } from "react";
 import { FAQS } from "constants/FAQs";
 import { useNavigate } from "react-router-dom";
+import { getAllCourses } from "airtable";
 
 const VideoHeader = () => {
   return (
@@ -55,23 +56,9 @@ const Courses = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(
-      `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/${process.env.REACT_APP_COURSE_TABLE}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setCourses(data.records.map((record) => record.fields));
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    getAllCourses().then((data) => setCourses(data));
   }, []);
-  if (!courses) return <div>Loading...</div>;
+  if (!courses) return <div className="h-96">Loading...</div>;
   return (
     <div className="flex justify-end flex-row-reverse flex-wrap gap-20 distorted">
       {courses.slice(0, 5).map((course) => (
