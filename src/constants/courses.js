@@ -8,6 +8,14 @@ import CourseIcon4 from "resources/icons/course_cateogries/design.svg";
 import CourseIcon4Selected from "resources/icons/course_cateogries/designSelected.svg";
 import CourseIcon5 from "resources/icons/course_cateogries/webdev.svg";
 import CourseIcon5Selected from "resources/icons/course_cateogries/webdevSelected.svg";
+import CourseIcon2Canvas from "resources/icons/course_cateogries/animatedCard/seo.svg";
+import CourseIcon2SelectedCanvas from "resources/icons/course_cateogries/animatedCard/seoSelected.svg";
+import CourseIcon3Canvas from "resources/icons/course_cateogries/animatedCard/automation.svg";
+import CourseIcon3SelectedCanvas from "resources/icons/course_cateogries/animatedCard/automationSelected.svg";
+import CourseIcon4Canvas from "resources/icons/course_cateogries/animatedCard/design.svg";
+import CourseIcon4SelectedCanvas from "resources/icons/course_cateogries/animatedCard/designSelected.svg";
+import CourseIcon5Canvas from "resources/icons/course_cateogries/animatedCard/webdev.svg";
+import CourseIcon5SelectedCanvas from "resources/icons/course_cateogries/animatedCard/webdevSelected.svg";
 
 export const COURSE_CATEGORIES = {
   ALL: "All",
@@ -27,18 +35,26 @@ export const COURSE_CATEGORIES_LOGOS = {
   SEO: {
     normal: CourseIcon2,
     selected: CourseIcon2Selected,
+    normalCanvas: CourseIcon2Canvas,
+    selectedCanvas: CourseIcon2SelectedCanvas,
   },
   AUTOMATION: {
     normal: CourseIcon3,
     selected: CourseIcon3Selected,
+    normalCanvas: CourseIcon3Canvas,
+    selectedCanvas: CourseIcon3SelectedCanvas,
   },
   DESIGN: {
     normal: CourseIcon4,
     selected: CourseIcon4Selected,
+    normalCanvas: CourseIcon4Canvas,
+    selectedCanvas: CourseIcon4SelectedCanvas,
   },
   WEB_DEVELOPMENT: {
     normal: CourseIcon5,
     selected: CourseIcon5Selected,
+    normalCanvas: CourseIcon5Canvas,
+    selectedCanvas: CourseIcon5SelectedCanvas,
   },
 };
 

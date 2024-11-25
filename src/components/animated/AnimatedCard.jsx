@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { calculateCardPosition } from "utils";
 import { useClonedGLTF } from "hooks/useClonedGLTF";
+import { COURSE_CATEGORIES_LOGOS } from "constants/courses";
 
 function splitIntoLines(text) {
   const words = text.split(" ");
@@ -28,6 +29,7 @@ function splitIntoLines(text) {
 const AnimatedCard = ({
   title,
   desc,
+  category,
   index,
   isSelected,
   onClick,
@@ -46,57 +48,79 @@ const AnimatedCard = ({
 
   const [hovered, setHovered] = useState(false);
 
+  const [rerenderStatus, rerender] = useState(false);
+
   useEffect(() => {
     // Create canvas and draw text
     if (!scene || !nodes || !cardRef.current) return;
+
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = 1024;
     canvas.height = 1024;
 
-    ctx.fillStyle = "black";
-    if (hovered || isSelected) ctx.fillStyle = "#FF8822";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    // Icon settings
+    const iconSize = 300;
+    const iconX = 200; // Center horizontally
+    const iconY = 100; // Padding from the top
+    const iconImage = isSelected
+      ? COURSE_CATEGORIES_LOGOS[category].selectedCanvas
+      : COURSE_CATEGORIES_LOGOS[category].normalCanvas;
 
-    const lines = splitIntoLines(desc);
+    // Draw icon
+    const img = new Image();
+    img.src = iconImage;
+    img.onload = () => {
+      ctx.drawImage(img, iconX, iconY, iconSize, iconSize);
+      const newTexture = new THREE.CanvasTexture(canvas);
+      newTexture.needsUpdate = true;
 
-    const lineHeight = 64; // Spacing between lines
-    const startX = canvas.width / 2 + 40;
-    let startY = canvas.height / 2 - ((lines.length - 1) * lineHeight) / 2; // Center vertically
+      if (nodes.Plane003) {
+        nodes.Plane003.material = new THREE.MeshBasicMaterial({
+          map: newTexture,
+          transparent: true,
+        });
+      }
+      if (nodes.Plane002) {
+        nodes.Plane002.material = new THREE.MeshPhysicalMaterial({
+          roughness: 0.2,
+          transmission: 0.7,
+          thickness: 1.5,
+          color: isSelected ? "#0284C7" : "",
+        });
+      }
+    };
 
-    // Draw text upside down
     ctx.save();
     ctx.translate(canvas.width / 2, canvas.height / 2);
     ctx.scale(-1, 1);
     ctx.translate(-canvas.width / 2, -canvas.height / 2);
-    ctx.font = "48px Arial";
+    // Text settings
+    const textColor = isSelected ? "white" : "#022147";
+    ctx.fillStyle = textColor;
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+
+    // Heading
+    const headingFontSize = 80; // Slightly smaller than before
+    const headingX = 200; // Center horizontally
+    const headingY = iconY + iconSize + 100; // Below the icon
+    ctx.font = `${headingFontSize}px Arial`;
+    ctx.fillText(title, headingX, headingY);
+
+    // Description text
+    const descFontSize = 40; // Slightly smaller than before
+    const lineHeight = 60;
+    const startX = 200; // Center horizontally
+    const startY = headingY + 100;
+
+    ctx.font = `${descFontSize}px Arial`;
+    const lines = splitIntoLines(desc);
     lines.forEach((line, index) => {
       ctx.fillText(line, startX, startY + index * lineHeight);
     });
-    ctx.font = "80px Arial";
-    ctx.fillText(title, canvas.width / 2, canvas.height / 2 - 320);
+  }, [title, desc, category, scene, nodes, cardRef, hovered, isSelected]);
 
-    ctx.restore();
-
-    const newTexture = new THREE.CanvasTexture(canvas);
-    newTexture.needsUpdate = true;
-
-    if (nodes.Plane003) {
-      nodes.Plane003.material = new THREE.MeshBasicMaterial({
-        map: newTexture,
-        transparent: true,
-      });
-    }
-    if (nodes.Plane002) {
-      nodes.Plane002.material = new THREE.MeshPhysicalMaterial({
-        roughness: 0.2,
-        transmission: 0.7,
-        thickness: 1.5,
-      });
-    }
-  }, [title, desc, scene, nodes, cardRef, hovered, isSelected]);
-  console.log("RR");
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
 

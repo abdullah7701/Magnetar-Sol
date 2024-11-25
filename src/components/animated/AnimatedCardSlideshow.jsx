@@ -88,6 +88,7 @@ const AnimatedCardSlideshow = ({
             <AnimatedCard
               title={card.title}
               desc={card.desc}
+              category={card.category}
               index={index}
               key={index}
               parentYPosition={yPosition}
