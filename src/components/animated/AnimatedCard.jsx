@@ -135,12 +135,12 @@ const AnimatedCard = ({
       cardRef.current.position.x = THREE.MathUtils.lerp(
         prevPosition.current.x,
         x,
-        0.04
+        0.1
       );
       cardRef.current.position.y = THREE.MathUtils.lerp(
         prevPosition.current.y,
         y + bounce,
-        0.04
+        0.1
       );
       cardRef.current.position.z = 0;
 
