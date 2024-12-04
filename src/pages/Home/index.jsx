@@ -13,6 +13,7 @@ import FloatingPhone from "components/animated/FloatingPhone";
 import Book from "resources/icons/book.svg";
 import Reviews from "components/common/Reviews";
 import Projects from "components/common/Projects";
+import Work from "components/common/Work";
 
 const Introduction = () => {
   const FancyText = ({ className, icon, delay = 0.15, children }) => {
@@ -305,6 +306,7 @@ const Home = () => {
       <Benefits />
       <Upgrades />
       <Projects />
+      <Work />
       <Reviews />
     </div>
   );

@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Logo from "resources/logos/main-wide.png";
 import Button from "./Button";
+import DropdownMenu from "./DropdownMenu";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [hidden, setHidden] = useState(false);
@@ -42,12 +44,7 @@ const Header = () => {
           >
             Home
           </div>
-          <div
-            className="cursor-pointer hover:text-primary"
-            onClick={() => navigate("/services/web")}
-          >
-            Services
-          </div>
+          <DropdownMenu />
           <div
             className="cursor-pointer hover:text-primary"
             onClick={() => navigate("/education")}
@@ -67,7 +64,9 @@ const Header = () => {
             Carriers
           </div>
         </div>
-        <Button>Contact us</Button>
+        <Link to="/contact">
+          <Button>Contact us</Button>
+        </Link>
       </div>
     </div>
   );

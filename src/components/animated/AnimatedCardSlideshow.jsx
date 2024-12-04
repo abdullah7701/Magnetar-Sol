@@ -5,9 +5,9 @@ import * as THREE from "three";
 import { PROJECTS } from "constants/projects";
 
 const Background = () => {
-  const bgTexture = useLoader(THREE.TextureLoader, "background.jpg");
+  const bgTexture = useLoader(THREE.TextureLoader, "back.jpg");
 
-  // Create a plane for the background
+
   const bgGeometry = useMemo(() => new THREE.PlaneGeometry(13, 7), []);
   const bgMaterial = useMemo(
     () =>
