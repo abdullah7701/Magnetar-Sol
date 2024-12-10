@@ -60,8 +60,17 @@ const AnimatedCard = ({
     canvas.height = 1024;
 
     // Icon settings
-    const iconSize = 300;
-    const iconX = 200; // Center horizontally
+    const iconSize = 300; // Base size for reference
+    const scaleX = 0.965; // Scale factor for x-axis from cardRef
+    const scaleY = 0.79;  // Scale factor for y-axis from cardRef
+
+    const shiftAmount = 150;
+
+    // Calculate adjusted icon size based on scaling factors
+    const adjustedIconWidth = iconSize * scaleX; 
+    const adjustedIconHeight = iconSize * scaleY; 
+
+    const iconX = (canvas.width - adjustedIconWidth) / 2 - shiftAmount; // Center horizontally
     const iconY = 100; // Padding from the top
     const iconImage = isSelected
       ? COURSE_CATEGORIES_LOGOS[category].selectedCanvas
@@ -71,7 +80,7 @@ const AnimatedCard = ({
     const img = new Image();
     img.src = iconImage;
     img.onload = () => {
-      ctx.drawImage(img, iconX, iconY, iconSize, iconSize);
+      ctx.drawImage(img, iconX, iconY, adjustedIconWidth, adjustedIconHeight); // Use adjusted dimensions
       const newTexture = new THREE.CanvasTexture(canvas);
       newTexture.needsUpdate = true;
 
@@ -104,17 +113,17 @@ const AnimatedCard = ({
     // Heading
     const headingFontSize = 80; // Slightly smaller than before
     const headingX = 200; // Center horizontally
-    const headingY = iconY + iconSize + 100; // Below the icon
-    ctx.font = `${headingFontSize}px Arial`;
+    const headingY = iconY + iconSize + 80; // Below the icon
+    ctx.font = `bold ${headingFontSize}px 'Urbanist', sans-serif`;
     ctx.fillText(title, headingX, headingY);
 
     // Description text
-    const descFontSize = 40; // Slightly smaller than before
+    const descFontSize = 45; // Slightly smaller than before
     const lineHeight = 60;
     const startX = 200; // Center horizontally
     const startY = headingY + 100;
 
-    ctx.font = `${descFontSize}px Arial`;
+    ctx.font = `${descFontSize}px 'Urbanist', sans-serif`;
     const lines = splitIntoLines(desc);
     lines.forEach((line, index) => {
       ctx.fillText(line, startX, startY + index * lineHeight);
@@ -175,12 +184,12 @@ const AnimatedCard = ({
   });
 
   return (
-    <group
+    <group  
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
       onClick={() => onClick()}
     >
-      <primitive object={scene} ref={cardRef} scale={[0.25, 0.25, 0.25]} />
+      <primitive object={scene} ref={cardRef} scale={[0.225, 0.18, 0.21]} />
     </group>
   );
 };

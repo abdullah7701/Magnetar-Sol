@@ -9,12 +9,12 @@ const calculateY = (x) => {
 
 export const calculateCardPosition = (index, parentYPosition) => {
   console.log(parentYPosition);
-  const height = window.scrollY - parentYPosition + 480 - 450 * index;
+  const height = window.scrollY - parentYPosition + 480 - 400 * index;
   let x = 5 - height / 200;
   x = Math.max(-3.5 + index * 2.3, x);
   const y = calculateY(x);
-  const rotationX = x / -120;
-  const rotationY = x / 80;
+  const rotationX = 0;
+  const rotationY = 0;
   const rotationZ = 0;
   const isHighlighted = false;
   return { x, y, rotationX, rotationY, rotationZ, isHighlighted };
